@@ -56,34 +56,50 @@ public class StringsAndThings {
      * containsEqualNumberOfIsAndNot("This is notnot") // Should return true
      * containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
+
     public Boolean containsEqualNumberOfIsAndNot(String input) {
-        Pattern not = Pattern.compile("not");
-        Pattern is = Pattern.compile("is");
-        Matcher m = not.matcher(input);
-        boolean b= m.matches();
-        Matcher m2 = is.matcher(input);
-        boolean b2=m2.matches();
 
-        int amountOfTimesNotRepeated= not.flags();
-        int amountOfTimesIsRepeated= is.flags();
+        String space = input.replace(" ","");
+        String  not = input.replace("not","" );
+        String not2=not.replaceAll(" ","");
+        int lengthWithOutNot=not2.length();
+        int lengthOriginal =space.length();
+        int numberOfOccaciesForNot=(lengthOriginal-lengthWithOutNot)/3;
 
-        if(amountOfTimesIsRepeated>=2|| amountOfTimesNotRepeated>=2){
+        String space2 = input.replace(" ","");
+        String  is = input.replace("is","" );
+        String is2=is.replaceAll(" ","");
+        int lengthWithOutIs=is2.length();
+        int lengthOriginalIs =space2.length();
+        int numberOfOccaciesForIs=(lengthOriginalIs-lengthWithOutIs)/2;
+
+        if (numberOfOccaciesForIs==numberOfOccaciesForNot){
             return true;
-        } else
+        }
 
-         return false;
+
+
+
+
+
+    return false;
     }
-
-    /**
+    /*
      * We'll say that a lowercase 'g' in a string is "happy" if there is another 'g' immediately to its left or right.
      * Return true if all the g's in the given string are happy.
      * example : gHappy("xxggxx") // Should return  true
      * gHappy("xxgxx") // Should return  false
      * gHappy("xxggyygxx") // Should return  false
      */
+
+
     public Boolean gIsHappy(String input) {
-        return null;
+        if (input.contains("gg")){
+            return true;
+        } else
+        return false;
     }
+
 
 
     /**
@@ -94,6 +110,24 @@ public class StringsAndThings {
      * countTriple("a") // Should return 0
      */
     public Integer countTriple(String input) {
-        return null;
+        String [] letters= input.split("");
+        int j=0; int k=0; int count=0;
+        for ( int i=1; i<= letters.length-1;i++) {
+            String letter = letters[i];
+            k = i - 1;
+            if (i!=letters.length-1 ){
+                j = i + 1;
+            }
+
+            if ((k >= 0) && (j<=letters.length-1)) {
+
+                if (letters[i].equals(letters[k]) && (letter.equals(letters[j]))) {
+                    count++;
+                }
+
+            }
+
+        }
+        return count;
     }
 }
